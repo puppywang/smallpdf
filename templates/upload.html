@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iris 专用的 PDF 压缩器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #007B9A;
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        #file-name {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            document.getElementById('file').onchange = function() {
+                document.getElementById('file-name').textContent = '选择的文件：' + this.files[0].name;
+            };
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>欢迎使用 Iris 专用的 PDF 压缩器</h1>
+        <p>请上传你想要压缩的 PDF 文件：</p>
+        <form method="post" enctype="multipart/form-data" action="/upload">
+            <input type="file" id="file" name="file" accept=".pdf">
+            <label for="file">选择文件</label>
+            <p id="file-name"></p>
+            <input type="number" id="quality" name="quality" min="1" max="100" value="50">
+            <label for="quality">压缩质量（1-100）</label>
+            <br>
+            <button type="submit">上传并压缩</button>
+        </form>
+        <div class="info">
+            <p>注意：只能上传 PDF 文件，最大文件大小为 100MB。</p>
+        </div>
+    </div>
+</body>
+</html>
